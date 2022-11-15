@@ -1,0 +1,47 @@
+Step 1: To install this library,root privileges are required . So login with root user 
+
+$ sudo bash 
+root@raspberrypi:/home/p1#
+
+Step 2: Download some required packages using wget command
+
+wget -0 - http://apt.pm-codeworks.de/pm-codeworks.de.gpg | apt-key add-
+wget -http://apt.pm-codeworks.de/pm-codeworks.list -P /etc/apt/sources.list.d/
+
+$ root@raspberrypi:/home/pi# wget -0 - http://apt.pm-codeworks.de/pm-codeworks.de.gpg | apt -key add -
+
+$root@raspberrypi:/home/pi# wget http://apt.pm-codeworks.de/pm-codeworks.list -p/etc/apt/sources.list.d/
+
+Step 3:Update the Raspberry Pi
+
+$ root@raspberrypi:/home/pi# apt -get update 
+
+Step 4:Install the downloaded finger print sensor library
+
+$ root@raspberrypi:/home/pi# apt -get install python-fingerprint
+
+Step 5:To return to the normal shell (under the Pi user),type exit
+
+$rooter@raspberrypi:/home/pi# exit
+
+Step 6: Now check USB port on which your finger print sensor is connected. Use this USB port in out python script 
+
+pi@raspberrypi: $ is /dev/ttyUSB*
+/dev/ttyUSB0
+
+Step 7:Now go to the example directory . (/usr/share/doc/python-finger/examples/)
+
+pi@raspberrypi: $ cd /usr/share/doc/python-fingerprint/examples/
+
+pi@raspberrypi: /usr/share/doc/python-fingerprint/example $ pwd
+/usr/share/doc/python-fingerprint/examples
+
+pi@raspberrypi: /usr/share/doc/python-fingerprint/example $ ls
+exapmle_delet.py                                example_enroll.py
+example_downloadimage.py              example_generaterandom.py 
+example_index,py                               example_search,py
+
+Step 8: Run sample file,to test to see if the sensor is ready for access
+
+
+pi@raspberrypi: /usr/share/doc/python-fingerprint/example $ sudo python example_index.py

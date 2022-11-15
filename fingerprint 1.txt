@@ -1,0 +1,21 @@
+1.sudo bash
+2.whoami
+3.pwd
+4.clear
+5.wget -0 - http://apt.pm-codeworks.de/pm-codeworks.de.gpg | apt-key add-
+6.wget -http://apt.pm-codeworks.de/pm-codeworks.list -P /etc/apt/sources.list.d/
+7.apt - get update
+8.apt-get install python-fingerprint 
+yes
+9.exit
+10.whoami
+11.pwd
+12.ls
+13.ls/dev/ttyUSB*
+14.cd/usr/share/doc/python-fingerprint/examples/
+15.pwd
+16.ls
+17.sudo python example index.py
+18.ls
+19.sudo python example_enroll.py
+20.sudo python example_search.py
