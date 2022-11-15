@@ -1,0 +1,94 @@
+Step 1: Update Raspberry Pi 
+
+$ sudo apt-get update
+
+$ sudo apt-get upgrade 
+
+Step 2: Enable SPI Interface using sudo raspi-config tool
+
+$ sudo raspi-config 
+
+Select using Arrow Keys  Interfacing Options  SPI  Enable
+ 
+Step 3: Reboot Raspberry Pi 
+
+$ sudo reboot
+
+Step 4: Check to make sure that SPI has been enabled.
+
+$ lsmod | grep spi
+
+Step 5: Install python3-dev, python3-pip packages to setting up RFID reader 
+
+$ sudo apt-get install python3-dev python3--pip
+Step 6: Install spidev to Raspberry Pi using pip. The spidev library helps to handle interactions with the SPI 
+
+$ sudo pip3 install spidev
+
+Step 7: Install the MFRC522 library using pip that helps talk to the RC522 module over the SPI interface 
+
+$ sudo pip3 install mfrc522
+ 
+
+There are two files included in this repository: 
+MFRC522.py which is an implementation of the RFID RC522 circuit. SimpleMFRC522.py that takes the MFRC522.py file and greatly simplifies it. 
+
+Step 8: Write Python script which is used to write data from the RC522 to your RFID tags. 
+
+$ pwd 
+
+$mkdir rfiddemo
+$cd rfiddemo/
+$pwd
+
+$ sudo name write.py
+
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+reader = SimpleMFRC522
+#welcome message
+print(“looking for cards”)
+print(“Press ctrl+c to stop”)
+
+try:
+             text=imput(‘Enter New Data:’)
+             print(“now place your tag to write…”)
+             reader.write(text)
+             print(“data written successfully”)
+finally:
+             GPIO.cleanup() 
+
+Run above script 
+
+$ sudo python3 write.py
+
+
+When you run script, it asked to write in the new data, in my case I am going to just type in msd gurukul. Press Enter when you are happy with what you have written. With that done, simply place your RFID Tag on top of your RFID RC522 circuit. As soon as it detects it, it will immediately write the new data to the tag. You should see “Data Written successfully” appear in your command line if it was successful. 
+
+
+Step 8: Write Python script which is used to read this data back off the RFID tag.
+
+$ pwd 
+
+$ sudo nano read.py . 
+
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+reader = SimpleMFRC522
+#welcome message
+print(“looking for cards”)
+print(“Press ctrl+c to stop”)
+
+try:
+             id,text = reader.read()
+             print(id)
+             print(text)
+finally:
+             GPIO.cleanup() 
+
+
+Run above script 
+
+$ sudo python3 read.py
