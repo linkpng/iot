@@ -1,0 +1,71 @@
+sda 24, sck 23 , miosi 19 , miso 21,gnd 6,rst 22,3.3 1
+
+
+1.$ sudo apt-get update
+
+2.$ sudo apt-get upgrade
+
+3.$ sudo raspi-config 
+
+Select using Arrow Keys  Interfacing Options  SPI  Enable
+
+4.$ sudo reboot
+
+5.$ lsmod | grep spi
+
+6.Sudo apt-get install python-spidev python3-spidev
+
+7.cd ,
+  pwd
+8.git clone https://github.com/Ithiery/SPI-py.git
+9.ls
+10.cd SPI.py/
+11.pwd
+12.ls
+13.sudo python setup.py install
+14.pwd
+15.git clone https://github.com/pimylifeup/MFRC522-python.git
+16.ls
+17.cd MFRC522-python/
+18.ls
+19.pwd
+20.sudo nano write.py
+
+21.
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+reader = SimpleMFRC522
+#welcome message
+print(“looking for cards”)
+print(“Press ctrl+c to stop”)
+
+try:
+             text=imput(‘Enter New Data:’)
+             print(“now place your tag to write…”)
+             reader.write(text)
+             print(“data written successfully”)
+finally:
+             GPIO.cleanup()
+22.Sudo python write.py  ... run
+
+23.sudo nano read.py
+
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+reader = SimpleMFRC522
+#welcome message
+print(“looking for cards”)
+print(“Press ctrl+c to stop”)
+
+try:
+             id,text = reader.read()
+             print(id)
+             print(text)
+finally:
+             GPIO.cleanup() 
+24.sudo python read.py
+
+
+done lll
