@@ -1,0 +1,4 @@
+red wire 5v
+black    gnd
+white    rxd
+yellow   txd
