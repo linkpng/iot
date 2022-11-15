@@ -1,0 +1,50 @@
+relay     rpi
+5v         4
+Iip        7
+gnd        6
+
+led
++ve  37
+-ve  39
+
+relay
++5v   4
+Iip   7
+gnd   6
+
+1.sudo apt-get update,upgrade
+2.$ wget http://sourceforge.net/projrcts/webiopi/files/WebIoPi-0.7.1.tar.gz
+3.ls
+4.$ tar xvxf WebioPi-0.7.1.tar.gz
+5.ls
+6.$ cd WebIOPI-0.7.1/
+7.pwd
+8.$ wget https://raw.githubusercontent.com/doublebind/raspi/master/webiopi-pi2bplus.patch
+9.$ patch -p1 -i webiopi-pi2bplus.patch
+10.ls
+11.$ sudo ./setup.sh   yes
+12.sudo reboot
+13.$ sudo webiopi -d -c /etc/webiopi/config
+14. Username: webiopi
+ Password: raspberry 
+15.mkdir webapp
+16.cd webapp/
+17.mkdir html
+18.cd html
+19.pwd
+20:mkdir img styles scripts
+21:ls
+22:ls img/
+   ls styles/
+   ls scripts/
+23:cd
+24:sudo nanao/etc/webiopi/config
+25:find use doc-root to char default.html
+doc-root = /home/pi/webapp/html
+26:sudo webiopi-passwd
+change pass
+27:cd
+28:sudo/etc/init.d/webiopi start
+29.sudo/etc/init.d/webiopi status
+30.sudo update-rc.d webiopi defaults
+31.https://192.168.1.36.8000
