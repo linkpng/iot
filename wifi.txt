@@ -1,0 +1,75 @@
+1.$ sudo apt-get update 
+
+2.$ sudo apt-get upgrade 
+3.$ sudo apt-get install hostapd
+
+4.$ sudo apt-get install bridge-utils
+
+
+5. $ sudo nano /etc/hostapd/hostapd.conf
+
+#Bridge mode 
+bridge=br0
+
+#Networking interface
+Interface=wlan0
+
+# WiFi configuration
+ssid=msdguruku
+channel=1
+hw_mode=g
+country_code=IN
+ieee80211n=1
+ieee80211d=1
+wmm_enabled=1
+
+# WiFi security
+auth_algs=1
+wpa=2
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+wpa_passphrase=gurukull23 
+
+6. set ssid=name , wpa= password
+ctrl+x save yes
+
+
+7. $sudo nano /etc/network/interfaces
+
+# Include files from  /etc/network/interfaces.d:
+#source-directory /etc/network/interfaces.d
+
+auto lo
+Iface lo inet loopback
+
+#Ethernet
+auto eth0
+allow-hotplug eth0
+Iface eht0 inet  manual
+
+#Wifi
+Auto wlan0
+Allow-hotplug wlan0
+Iface wlan0 inet manual
+Wireless-power off
+
+#Bridge
+auto br0
+Iface br0 inet dhcp
+bridge_ports eht0 wlan0
+bridge_fd 0
+bridge_stp off
+
+8.$ sudo nano /etc/default/hostapd
+
+
+# file can be found at /usr/share/doc/hostapd/example/hostapd.conf.gz
+#
+RUN_DAEMON=yes
+DAEMON_CONF=”/etc/hostapd/hostapd.conf”
+
+9. sudo reboot
+
+
+
+
